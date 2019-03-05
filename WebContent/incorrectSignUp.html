@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SignUp</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+		
+		body{
+		background-image: url('background.jpg');
+		background-repeat: no-repeat;
+		background-size:cover;
+		}
+
+		body {
+			display: -ms-flexbox;
+			display: -webkit-box;
+			display: flex;
+			-ms-flex-align: center;
+			-ms-flex-pack: center;
+			-webkit-box-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			justify-content: center;
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #f5f5f5;
+		}
+
+		.form-signin {
+			width: 100%;
+			max-width: 330px;
+			padding: 15px;
+			margin: 0 auto;
+		}
+
+
+
+		.form-signin .form-control {
+			position: relative;
+			box-sizing: border-box;
+			height: auto;
+			padding: 10px;
+			font-size: 16px;
+		}
+
+		.form-signin .form-control:focus {
+			z-index: 2;
+		}
+
+		.form-signin input[type="email"] {
+			margin-bottom: -1px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		.form-signin input[type="password"] {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	</style>
+</head>
+
+<title>Incorrect Sign Up</title>
+</head>
+<body>
+
+<form method=post action="SignUpServlet" class="form-signin"><br><br>
+<h6 class="text-danger" align="center">!!! Email already exists</h6> <h6 class="text-danger" align="center">Please choose a different email id.</h6><br>
+
+		<div class="form-group">
+			<label for="inputName">Name</label>
+			<input type="text" class="form-control" id="inputName" name="username" required>
+		</div>
+
+	
+			<label >Gender</label>
+			<div class="form-check">
+			  <label class="form-check-label">
+				<input type="radio" class="form-check-input"  name="gender" value="male" id="optionsRadios1"  checked="">
+				Male
+			  </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			  <label class="form-check-label">
+				<input type="radio" class="form-check-input"  name="gender" value="female" id="optionsRadios2" >
+				Female
+			  </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		
+			</div>
+			
+
+		</div>
+		<div class="form-group">
+			<label for="inputAge">Age</label>
+			<input type="number" class="form-control" id="inputAge" name="age" required size=2 min="18" max="80"
+				required>
+		</div>
+
+		<div class="form-group">
+			<label for="inputMobile">Mobile Number</label>
+			<input type="tel" class="form-control" id="inputMobile" name="mobileNumber" required
+				pattern="[6-9]{1}[0-9]{9}" required>
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">Email Address</label>
+			<input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp"
+				placeholder="Enter email" required>
+			<small id="emailHelp" class="form-text text-muted">Your email will not be shared with anyone.</small>
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" class="form-control" id="exampleInputPassword1" name="password"
+				placeholder="Password" required>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+	</form>
+
+</body>
+</html>
