@@ -1,0 +1,8 @@
+create table passengers(mail_id varchar2(20),password varchar2(20),name varchar2(20),gender varchar2(10),age number,mobile_number number, constraint users_mail_id_pk primary key(mail_id));
+select * from passengers;
+
+create table train(id number,name varchar2(20),source varchar2(20),destination varchar2(20),duration varchar2(10),category varchar2(10),price number,constraint train_id_pk primary key(id));
+select * from train;
+
+create table TicketDetails(train_id number,name varchar2(20),gender varchar2(10),age number,mobile number,email_id varchar2(20), constraint ticketdetails_trainid_pk primary key(train_id), constraint ticketdetails_trainid_fk foreign key(train_id) references train(id),constraint ticketdetails_emailid_fk foreign key(email_id) references passengers(mail_id));
+select * from TicketDetails;
