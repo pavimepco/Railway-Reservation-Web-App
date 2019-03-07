@@ -30,5 +30,10 @@ ALTER TABLE trains ADD CHECK (price>0);
 select * from trains;
 
 //TABLE 3
-create table JourneyDetails(train_id number,name varchar2(20),gender varchar2(10),age number,mobile number,email_id varchar2(20), constraint journeydetails_trainid_pk primary key(train_id), constraint journeydetails_trainid_fk foreign key(train_id) references train(id),constraint journeydetails_emailid_fk foreign key(email_id) references passengers(mail_id));
-select * from JourneyDetails;
+
+create table JourneyDetail(name varchar2(20) not null,
+gender varchar2(10) not null,
+age number(3) not null,
+mobile_number number(10) not null,
+seats number(30) not null,
+total number(10) not null);
