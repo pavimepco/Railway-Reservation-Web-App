@@ -48,8 +48,7 @@ public class LoginServlet extends HttpServlet {
 					  RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
 					  rd.forward(request, response);
 				}
-				
-				
+								
 				  HttpSession session=request.getSession();  
 			      session.setAttribute("email",email);  
 			        

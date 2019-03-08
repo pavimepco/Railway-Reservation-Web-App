@@ -22,9 +22,8 @@ public class TrainDetailsServlet extends HttpServlet {
    
     public TrainDetailsServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -45,17 +44,18 @@ public class TrainDetailsServlet extends HttpServlet {
 		    String email= (String)session.getAttribute("email");  		        
 		    request.setAttribute("email",email);
 			
-			ArrayList<Train> trainlist=dao.findAll(train);
+			ArrayList<Train> trainlist=dao.findall(train);
 			System.out.println(trainlist);
 			request.setAttribute("train",trainlist);
 			RequestDispatcher rd=request.getRequestDispatcher("trainList.jsp");
-			rd.forward(request, response);
+			rd.include(request, response);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			 RequestDispatcher rd = request.getRequestDispatcher("failure.html");
+			  rd.include(request, response);
 		}
 
-		doGet(request, response);
 	}
 
 }

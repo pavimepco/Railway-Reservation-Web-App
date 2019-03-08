@@ -33,7 +33,7 @@ public class DeleteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id=request.getParameter("id");
+		int id=Integer.parseInt(request.getParameter("id"));
 		TrainDAO dao=new TrainDAO();
 		try {
 			

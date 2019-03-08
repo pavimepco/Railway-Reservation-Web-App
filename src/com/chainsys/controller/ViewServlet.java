@@ -27,14 +27,11 @@ public class ViewServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		
-		Train train = new Train();
-		
-       try{
+			
+		Train train = new Train();		
+        try{
 			
 			HttpSession session=request.getSession();  
 		    String email= (String)session.getAttribute("email");  		        
@@ -62,13 +59,13 @@ public class ViewServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
-		int duration = Integer.parseInt(request.getParameter("duration"));
+		String duration = request.getParameter("duration");
 		String category = request.getParameter("category");
-		int price = Integer.parseInt(request.getParameter("price"));
+		double price = Double.parseDouble(request.getParameter("price"));
 		
 		Train train = new Train();
 		train.setId(id);

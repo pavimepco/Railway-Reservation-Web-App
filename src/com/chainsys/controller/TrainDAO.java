@@ -9,28 +9,28 @@ import java.util.ArrayList;
 public class TrainDAO {
 	public ArrayList findAll(Train train) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		String sql = "SELECT * FROM train";
+		String sql = "SELECT * FROM trains";
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		
 		ResultSet resultset = stmt.executeQuery();
 		ArrayList<Train> tlist = new ArrayList<>();
 		while (resultset.next()) {
 			Train trainobj = new Train();
-			trainobj.setId(resultset.getString("id"));
+			trainobj.setId(resultset.getInt("id"));
 			trainobj.setName(resultset.getString("name"));
 			trainobj.setSource(resultset.getString("source"));
 			trainobj.setDestination(resultset.getString("destination"));
-			trainobj.setDuration(resultset.getInt("duration"));
+			trainobj.setDuration(resultset.getString("duration"));
 			trainobj.setCategory(resultset.getString("category"));
-			trainobj.setPrice(resultset.getInt("price"));
+			trainobj.setPrice(resultset.getDouble("price"));
 			tlist.add(trainobj);
 		}
 		return tlist;
 	}
 
-	public int getPrice(int id) throws SQLException {
+	public double getPrice(int id) throws SQLException {
 		Connection connection = ConnectionUtil.getConnection();
-		String sql = "SELECT price FROM train WHERE id=" + id;
+		String sql = "SELECT price FROM trains WHERE id=" + id;
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		ResultSet resultset = stmt.executeQuery();
 		while (resultset.next()) {
@@ -41,7 +41,7 @@ public class TrainDAO {
 
        public Train findById(int id)throws SQLException{
 		ResultSet rset=null;
-		String sql="select id,name,source,destination,duration,category,price from train where id=?";
+		String sql="select id,name,source,destination,duration,category,price from trains where id=?";
 		Connection connection=ConnectionUtil.getConnection();
 		PreparedStatement preparedStatement=connection.prepareStatement(sql);
 		preparedStatement.setInt(1,id);
@@ -50,9 +50,7 @@ public class TrainDAO {
 		if(rset.next())
 		{
 		 t=new Train();
-		 t.setPrice(rset.getInt("price"));
-			
-		 
+		 t.setPrice(rset.getDouble("price"));	 
 		 ConnectionUtil.closeConnection(connection, preparedStatement, null);
 			}
 		return t;						
@@ -60,19 +58,17 @@ public class TrainDAO {
 
        public void addTrain(Train t)throws SQLException{
    		try{
-   		String sql="insert into train(id,name,source,destination,duration,category,price)values(?,?,?,?,?,?,?)";
+   		String sql="insert into trains(id,name,source,destination,duration,category,price)values(?,?,?,?,?,?,?)";
    		Connection connection=ConnectionUtil.getConnection();
-   		PreparedStatement preparedStatement=connection.prepareStatement(sql);
-      				
-   		preparedStatement.setString(1,t.getId());
+   		PreparedStatement preparedStatement=connection.prepareStatement(sql);  				
+   		preparedStatement.setInt(1,t.getId());
    		preparedStatement.setString(2,t.getName());
    		preparedStatement.setString(3,t.getSource());
    		preparedStatement.setString(4,t.getDestination());
-   		preparedStatement.setInt(5,t.getDuration());
+   		preparedStatement.setString(5,t.getDuration());
    		preparedStatement.setString(6,t.getCategory());
-   		preparedStatement.setInt(7,t.getPrice());
-   
-   		
+   		preparedStatement.setDouble(7,t.getPrice());
+      		
    		int rows=preparedStatement.executeUpdate();
    		System.out.println("Rows affected:"+rows);
    	     ConnectionUtil.closeConnection(connection, preparedStatement, null);
@@ -83,12 +79,12 @@ public class TrainDAO {
    	
    	}
               
-       public void deleteTrain(String id)throws SQLException{	
+       public void deleteTrain(int id)throws SQLException{	
    		try{
-   		String sql="delete from train where id=?";
+   		String sql="delete from trains where id=?";
    		Connection connection=ConnectionUtil.getConnection();
    		PreparedStatement preparedStatement=connection.prepareStatement(sql);
-   		preparedStatement.setString(1,id);
+   		preparedStatement.setInt(1,id);
    		int rows=preparedStatement.executeUpdate();
    		System.out.println("Rows affected:"+rows);
    		 ConnectionUtil.closeConnection(connection, preparedStatement, null);
@@ -96,6 +92,28 @@ public class TrainDAO {
    		catch(Exception e){
    			e.printStackTrace();
    		}
-   	}
+   	}   
+         
+       public ArrayList findall(Train train) throws SQLException{
+   		Connection connection=ConnectionUtil.getConnection();
+   		String sql="SELECT * FROM trains WHERE SOURCE=? AND DESTINATION=?";
+   		PreparedStatement stmt = connection.prepareStatement(sql);
+   		stmt.setString(1,train.getSource());
+   		stmt.setString(2,train.getDestination());
+   		ResultSet resultset = stmt.executeQuery();
+   		ArrayList<Train> tlist=new ArrayList<>();
+   		while(resultset.next()){
+   			Train obj =new Train();
+   			obj.setId(resultset.getInt("id"));
+   			obj.setName(resultset.getString("name"));
+   			obj.setSource(resultset.getString("source"));
+   			obj.setDestination(resultset.getString("destination"));
+   			obj.setDuration(resultset.getString("duration"));
+   			obj.setCategory(resultset.getString("category"));
+   			obj.setPrice(resultset.getDouble("price"));
+   			tlist.add(obj);
+   		}
+   		return tlist;
+   	}     
        
 }

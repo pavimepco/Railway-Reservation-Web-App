@@ -36,40 +36,46 @@ public class DetailsServlet extends HttpServlet {
 		System.out.println(sea);
 		int seats=Integer.parseInt(sea);
 		System.out.println(seats);
-		String category = request.getParameter("category");
 		
-		System.out.println(category);
+
 		Details d= new Details();
 		d.setSeats(seats);
-		d.setCategory(category);
-		
 		
 		HttpSession session=request.getSession();
 		int price=(int) session.getAttribute("price");
-   	    String mail=(String) session.getAttribute("email");
-		 System.out.println(mail); 
+        String mail=(String) session.getAttribute("email");
+		System.out.println(mail); 
 
 		DetailsDAO dao = new DetailsDAO();
 		ArrayList<Passenger>pass=new ArrayList<>();
 				
 			try {
-				dao.addDetails(d);
-				int total=price*seats;
+			//	dao.addDetails(d);
+				
+				
+				double total=price*seats;
 				request.setAttribute("total", total);
-				request.setAttribute("seats", seats);		
+				d.setTotal(total);
+				request.setAttribute("seats", seats);	
 				
 				pass=dao.findAll(mail);
 				System.out.println(pass);
+				
+				d.setName(pass.get(0).getName());
+				d.setGender(pass.get(0).getGender());
+				d.setAge(pass.get(0).getAge());
+				d.setMobile_number(pass.get(0).getMobileNumber());
+				
+				dao.addDetails(d);
 				
 				request.setAttribute("FINAL", pass);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("final.jsp");
 				rd.forward(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			}   catch (SQLException e) {
+				
 				e.printStackTrace();
-			}
-       
+			}       
 	}
 
 }

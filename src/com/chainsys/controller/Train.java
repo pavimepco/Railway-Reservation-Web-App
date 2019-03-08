@@ -1,18 +1,18 @@
 package com.chainsys.controller;
 
 public class Train {
-	private String id;
+	private int id;
 	private String name;
 	private String source;
 	private String destination;
-	private int duration;
+	private String duration;
 	private String category;
-	private int price;
+	private double price;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -33,10 +33,10 @@ public class Train {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	public int getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(int duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 	public String getCategory() {
@@ -45,11 +45,11 @@ public class Train {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 	
 	

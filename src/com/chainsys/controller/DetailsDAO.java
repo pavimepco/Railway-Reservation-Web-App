@@ -9,14 +9,18 @@ import java.util.ArrayList;
 public class DetailsDAO {
 	ResultSet rset=null;
 	
-	public void addDetails(Details d)throws SQLException{
+	public void addDetails(Details d )throws SQLException{
 		try{
-		String sql="insert into details(seats,category)values(?,?)";
+		String sql="insert into JourneyDetail(name,gender,age,mobile_number,seats,total)values(?,?,?,?,?,?)";
 		Connection connection=ConnectionUtil.getConnection();
 		PreparedStatement preparedStatement=connection.prepareStatement(sql);
 	
-		preparedStatement.setInt(1,d.getSeats());
-		preparedStatement.setString(2,d.getCategory());
+		preparedStatement.setString(1,d.getName());
+		preparedStatement.setString(2,d.getGender());
+		preparedStatement.setInt(3,d.getAge());
+		preparedStatement.setLong(4,d.getMobile_number());
+		preparedStatement.setInt(5,d.getSeats());
+		preparedStatement.setDouble(6,d.getTotal());
 	
 		int rows=preparedStatement.executeUpdate();
 		System.out.println("Rows affected:"+rows);
@@ -48,10 +52,7 @@ public ArrayList<Passenger> findAll(String email)throws SQLException{
 		ConnectionUtil.closeConnection(connection, preparedStatement, null);
 		return list;
 	
-		
 	}
-			
-		
+				
 	}
-	
 	

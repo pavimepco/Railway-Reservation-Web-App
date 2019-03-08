@@ -2,6 +2,7 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,8 +40,7 @@ public class NewServlet extends HttpServlet {
 		
 		try {
 			train=trainDAO.findById(id);
-			int price=train.getPrice();
-			
+			double price=train.getPrice();
 			HttpSession session=request.getSession();
 			session.setAttribute("price" , price);
 			

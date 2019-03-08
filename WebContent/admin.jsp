@@ -11,7 +11,7 @@
 
 
 </head>
-<body>
+<body background="img.jpg" >
 <h1>WELCOME ADMIN!!!</h1><br>
 <a href="addTrain.html">Add Train</a><br>
 <a href="deleteTrain.html">Delete Train</a><br>

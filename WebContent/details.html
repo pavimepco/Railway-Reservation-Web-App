@@ -15,7 +15,7 @@
 		}
 		
 		body{
-		background-image: url('background.jpg');
+		background-image: url('backgrd.jpg');
 		background-repeat: no-repeat;
 		background-size:cover;
 		}
@@ -77,20 +77,9 @@
 <form method="post" action="DetailsServlet" class="form-signin">
 <div class="form-group">
   <h3> No of Seats</h3>
-   <input type="number" name="bseats"><br>
+   <input type="number" name="bseats" min=1 max=50><br>
 </div>
-  <h3>Category</h3>
-  <div class="form-check">
-    <label class="form-check-label">
-  <input type="radio" name="category" value="AC" id="optionsRadios1">
-   AC  
-   </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   
-   <label class="form-check-label">
-  <input type="radio" name="category" value="NonAC" id="optionsRadios2">
-  NonAC
-   </label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </div>
   
  <button class="btn btn-lg btn-primary btn-block" type="submit">Book</button>
  </form>

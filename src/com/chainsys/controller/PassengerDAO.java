@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PassengerDAO {
-
 	
 		ResultSet resultSet = null;
 
@@ -14,7 +13,7 @@ public class PassengerDAO {
 			try {
 				Connection connection = ConnectionUtil.getConnection();
 				System.out.println(connection);
-				String sql = "insert into passengers(mail_id,password,name,gender,age,mobile_number)values(?,?,?,?,?,?)";
+				String sql = "insert into passenger(mail_id,password,name,gender,age,mobile_number)values(?,?,?,?,?,?)";
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 				preparedStatement.setString(3, pass.getName());
 				preparedStatement.setString(4, pass.getGender());
@@ -35,7 +34,7 @@ public class PassengerDAO {
 		public boolean existingPassenger(Passenger pass) throws SQLException {
 			boolean login = false;
 			Connection connection = ConnectionUtil.getConnection();
-			String sql = "select mail_id,password from passengers where mail_id=? and password=?";
+			String sql = "select mail_id,password from passenger where mail_id=? and password=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			try {
 				preparedStatement.setString(1, pass.getEmail());
@@ -65,7 +64,7 @@ public class PassengerDAO {
 		public boolean checkPassenger(Passenger pass) throws SQLException {
 			boolean signup = false;
 			Connection connection = ConnectionUtil.getConnection();
-			String sql = "select mail_id from passengers where mail_id=?";
+			String sql = "select mail_id from passenger where mail_id=?";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
 			preparedStatement.setString(1,pass.getEmail());
@@ -75,16 +74,13 @@ public class PassengerDAO {
 				if (resultSet.next()) {					
 					signup = false;
 					return signup;
-
 				} else {
 					signup = true;
 					return signup;
 				}
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return signup;
 		}
 	}
-

@@ -33,13 +33,13 @@ public class AddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String id = request.getParameter("id");
+		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String source = request.getParameter("source");
 		String destination = request.getParameter("destination");
-		int duration = Integer.parseInt(request.getParameter("duration"));
+		String duration = request.getParameter("duration");
 		String category = request.getParameter("category");
-		int price = Integer.parseInt(request.getParameter("price"));
+		double price = Double.parseDouble(request.getParameter("price"));
 		
              
 		Train train = new Train();
